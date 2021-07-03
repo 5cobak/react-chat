@@ -1,0 +1,15 @@
+.button {
+	display: block;
+	background-color: rgb(94, 219, 131);
+	width: 100%;
+	border: 1px solid rgba(000,000,000,0.1);
+	border-radius: 4px;
+	cursor: pointer;
+	transition: 0.15s;
+	padding: 10px 0;
+	color: rgba(000,000,000,0.75);;
+	font-weight: bold;
+	&:hover {
+		opacity: 0.75;
+	}
+}
