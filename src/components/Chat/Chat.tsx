@@ -60,7 +60,7 @@ const Chat = ({state, dispatch}: ChatProps) => {
 				</ul>
 			</div>
 			<div>
-				<Scrollbar style={{width: '400px'}} className={classes.chat} ref={chatRef}>
+				<Scrollbar style={{width: '320px'}} className={classes.chat} ref={chatRef}>
 					<ul className={classes.chatList}>
 						{messages.map((data, index) => {
 							if(data.message && data.user !== state.user) {

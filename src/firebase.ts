@@ -53,7 +53,6 @@ class FirebaseApi {
 					})
 				}
 				else {
-          console.log(3);
           
 					this.db.collection('rooms').doc(room).set({
 						messages: [{
