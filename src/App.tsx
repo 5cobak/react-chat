@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Login from './components/Login/Login';
 import { reducer, initState } from './reducer';
 
@@ -11,7 +12,6 @@ function App() {
   const isLogin = state.user || state.room;
 
   return (
-    
     <div className={classes.app}>
       {!isLogin ? (<Login state={state} dispatch={dispatch}/>) : <Chat state={state} dispatch={dispatch}/>}
     </div>

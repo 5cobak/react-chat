@@ -32,12 +32,7 @@ const Login = ({state, dispatch}: ILogin) => {
 			}
 		})
 
-		fb.setUsers(room, user);
-
 		fb.getRoomData(room, (data: RoomData)=>{
-			console.log('====================================');
-			console.log(data);
-			console.log('====================================');
 			dispatch({
 				type: 'SET_ROOM_DATA',
 				payload: data
@@ -46,11 +41,11 @@ const Login = ({state, dispatch}: ILogin) => {
 	}
 
 	const handlerInputRoom = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setRoom(e.target.value);
+		setRoom(e.target.value.trim());
 	}
 
 	const handlerInputUser = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setUser(e.target.value);
+		setUser(e.target.value.trim());
 	}
 
 	return (

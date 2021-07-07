@@ -9,9 +9,19 @@
 
 .sideBar {
 	margin-right: 5px;
-	background-color: #eee;
+	background-color: #4A7F96;
 	border-radius: 4px;
 	padding: 15px;
+	color: white;
+}
+
+.userName {
+	color: rgb(94, 219, 131);
+}
+
+.usersList {
+	list-style: none;
+	padding: 0;
 }
 
 .title {
@@ -21,28 +31,72 @@
 
 .chat {
 	width: 320px;
-	min-height: 400px;
+	min-height: 500px;
 	border: 1px solid rgba(000,000,000,0.25);
 	border-radius: 4px;
 	margin-bottom: 20px;
+	background: linear-gradient(90deg, rgba(218,245,179,1) 0%, rgba(175,255,179,1) 49%, rgba(160,205,255,1) 100%);
 }
 
 .chatList {
 	list-style: none;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
-.chatItem {
+.chatItem, .chatItemCurrent {
 	list-style: none;
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.currentUser, .user {
+	font-weight: bold;
+	padding: 7px;
+	background-color: rgba(41, 72, 212, .3);
+	color: white;
+	align-self: flex-end;
+	border-radius: 4px;
+	display: inline-block;
+	margin-bottom: 5px;
+	font-size: 10px;
 }
 
 .user {
-	font-weight: bold;
+	align-self: flex-start;
+}
+
+.currentMessage, .message {
+	padding: 10px;
+	background-color: #EFFDDE;
+	align-self: flex-end;
+	border-radius: 10px;
+	position: relative;
+	max-width: 80%;
+	&:after {
+		content: '';
+		background: inherit;
+		position: absolute;
+		top: calc(90% - 10px);
+	}
+}
+
+.currentMessage {
+	border-top-right-radius: 0;
+	&:after {
+		
+	}
+}
+
+.message {
+	background-color: rgba(000,000,000,.5);
+	align-self: flex-start;
+	color: white;
+	border-top-left-radius: 0;
 }
 
 .textArea {
-	margin-bottom: 20px;
 	width: 100%;
 	resize: none;
 }

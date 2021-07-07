@@ -28,32 +28,6 @@ class FirebaseApi {
     this.db = firebase.firestore();
   }
 
-  public async setUsers(room: string, user: string) {
-    this.user = user;
-    this.db.collection('rooms')
-			.doc(room)
-			.get()
-			.then( async (doc)=>{
-				
-				if ( doc.data()?.users && !doc.data()?.messages) {
-					await this.db.collection('rooms').doc(room).set({
-              users: [...doc.data()?.users, user],
-					})
-				}
-        else if (doc.data()?.users && doc.data()?.messages) {
-          await this.db.collection('rooms').doc(room).set({
-            users: [...doc.data()?.users, user],
-            messages: [...doc.data()?.messages]
-          })
-        }
-				else {
-					await this.db.collection('rooms').doc(room).set({
-						users: [user]
-					})
-				}
-			});
-  }
-
   public async getMessages(room: string, callback: (data: any)=> any) {
     await this.db.collection('rooms').doc(room)
     .onSnapshot((doc) => {
@@ -70,10 +44,8 @@ class FirebaseApi {
 			.then( (doc)=>{
 				
 				if ( doc.exists && doc.data()?.messages) {
-          console.log(1);
           
 					this.db.collection('rooms').doc(room).set({
-              users: [...doc.data()?.users],
               messages: [...doc.data()?.messages, {
                 user,
                 message,
@@ -84,7 +56,6 @@ class FirebaseApi {
           console.log(3);
           
 					this.db.collection('rooms').doc(room).set({
-            users: [...doc.data()?.users],
 						messages: [{
               user,
               message
@@ -102,27 +73,9 @@ class FirebaseApi {
       await this.db.collection('rooms').doc(room).set({});
     });
     await this.db.collection("rooms").doc(room)
-      .onSnapshot((doc) => {    
+      .onSnapshot((doc) => {
           callback(doc.data())
       });
-  }
-
-  public deleteUser(room: string, user: string) {
-    
-    this.db.collection('rooms')
-      .doc(room)
-      .get()
-      .then((doc)=> {
-        const userLeavedIndex = doc.data()?.users.indexOf(user);
-        const users = doc.data()?.users;
-        users.splice(userLeavedIndex, 1);
-        
-        this.db.collection('rooms').doc(room).set({
-          ...doc.data(),
-          users: users,
-        })
-      })
-    ;
   }
 
   private init() {
